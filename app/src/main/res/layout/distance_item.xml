@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@drawable/bg_distance"
+    android:paddingHorizontal="@dimen/padding_middle">
+
+    <TextView
+        android:id="@+id/tvDistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/text_size_v3"
+        android:textColor="@color/white"
+        android:gravity="center"
+        tools:text="9500"
+        />
+
+    <ImageView
+        android:id="@+id/ivAdd"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/add_desc"
+        />
+
+</FrameLayout>

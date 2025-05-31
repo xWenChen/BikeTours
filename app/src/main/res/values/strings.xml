@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">骑行里程</string>
+    <string name="save">保存</string>
+    <string name="expand_desc">展开按钮</string>
+    <string name="input_hint">点击输入骑行距离，单位：米</string>
+    <string name="input_title">请输入:</string>
+    <string name="add_desc">添加按钮</string>
 </resources>
