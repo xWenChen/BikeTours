@@ -9,7 +9,7 @@ import com.mustly.biketours.util.dimenRes
 class DistanceItemDecoration(private val spanCount: Int) : RecyclerView.ItemDecoration() {
 
     private val space = R.dimen.padding_large.dimenRes / 2
-    private val vSpace = R.dimen.padding_middle
+    private val vSpace = R.dimen.padding_large.dimenRes
     private val lastColumn = spanCount - 1
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {

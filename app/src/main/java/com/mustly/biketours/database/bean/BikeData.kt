@@ -10,13 +10,21 @@ import com.mustly.biketours.database.constants.tableName
  * */
 @Entity(tableName = tableName)
 data class BikeData(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true)
+    var id: Long,
     /**
-     * 时间戳，单位是毫秒。
+     * 骑行起始时间戳，单位是毫秒。
      * */
-    @ColumnInfo(name = "timestamp") val timestamp: Long,
+    @ColumnInfo
+    var startTime: Long,
+    /**
+     * 骑行结束时间戳，单位是毫秒。
+     * */
+    @ColumnInfo
+    var endTime: Long,
     /**
      * 当次骑行的距离，单位是米。
      * */
-    @ColumnInfo(name = "distance") val distance: Long,
+    @ColumnInfo
+    var distance: Long,
 )

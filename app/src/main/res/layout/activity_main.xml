@@ -1,112 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginVertical="@dimen/page_padding">
+    android:paddingBottom="@dimen/page_padding_large"
+    android:background="@color/main_green"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llInput"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/page_padding"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:id="@+id/tvHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_v2"
-            android:textColor="@color/black"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:hint="@string/input_title"
-            />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="@dimen/padding_small"
-            android:paddingHorizontal="@dimen/padding_small"
-            android:background="@null"
-            android:textSize="@dimen/text_size_v2"
-            android:textColorHint="@color/black_30"
-            android:textColor="@color/black"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:hint="@string/input_hint"
-            android:inputType="number"
-            />
-
-        <FrameLayout
-            android:id="@+id/flExpand"
-            android:layout_width="40dp"
-            android:layout_height="40dp" >
-
-            <ImageView
-                android:id="@+id/ivExpand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_expand"
-                android:contentDescription="@string/expand_desc"
-                android:layout_gravity="center"
-                />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/divider_color"
-        android:layout_marginHorizontal="@dimen/page_padding"
-        android:layout_marginTop="@dimen/radius_middle"
-        android:layout_marginBottom="@dimen/page_padding"
-        app:layout_constraintTop_toBottomOf="@id/llInput"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/page_padding"
-        app:layout_constraintBottom_toBottomOf="@id/btnSave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        app:layout_constraintBottom_toTopOf="@id/btnSave"
-        app:layout_constraintVertical_bias="0"/>
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:layout_marginHorizontal="@dimen/page_padding"
-        android:elevation="2dp"
-        android:gravity="center"
+        android:background="@color/green"
+        android:paddingVertical="@dimen/padding_middle"
+        android:gravity="start"
         android:textSize="@dimen/text_size_v1"
         android:textColor="@color/white"
-        android:text="@string/save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/app_name"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/page_padding"
+                android:layout_marginTop="@dimen/padding_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/tvHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_v2"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="@string/input_title"
+                    />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="102dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/padding_small"
+                    android:textSize="@dimen/text_size_v3"
+                    android:textColorHint="@color/black_30"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:hint="@string/input_hint"
+                    android:inputType="number"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/meter"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_v2"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/flExpand"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" >
+
+                    <ImageView
+                        android:id="@+id/ivExpand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_expand"
+                        android:contentDescription="@string/expand_desc"
+                        android:layout_gravity="center"
+                        />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_v2"
+                    android:textColor="@color/white"
+                    android:text="@string/save"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginTop="@dimen/radius_middle"
+                android:layout_marginBottom="@dimen/page_padding"
+                app:layout_constraintTop_toBottomOf="@id/llInput"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/page_padding"
+                android:paddingBottom="@dimen/padding_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintVertical_bias="0"/>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginHorizontal="@dimen/page_padding"
+                android:layout_marginTop="@dimen/padding_middle"
+                android:layout_marginBottom="@dimen/page_padding"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvTotalDistanceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_v2"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/padding_large"
+                android:padding="@dimen/padding_large"
+                android:text="@string/total_distance_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
+                />
+
+            <TextView
+                android:id="@+id/tvTotalDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_v0"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_middle"
+                android:text="3000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTotalDistanceTitle"
+                tools:text="3000"
+                />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginTop="@dimen/padding_middle"
+                android:layout_marginBottom="@dimen/page_padding"
+                app:layout_constraintTop_toBottomOf="@id/tvTotalDistance"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

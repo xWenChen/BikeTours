@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:background="@drawable/bg_distance"
-    android:paddingHorizontal="@dimen/padding_middle">
+    android:paddingHorizontal="@dimen/padding_middle"
+    android:paddingVertical="@dimen/padding_small">
 
     <TextView
         android:id="@+id/tvDistance"
@@ -18,15 +19,6 @@
         android:textColor="@color/white"
         android:gravity="center"
         tools:text="9500"
-        />
-
-    <ImageView
-        android:id="@+id/ivAdd"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_add"
-        android:contentDescription="@string/add_desc"
         />
 
 </FrameLayout>
