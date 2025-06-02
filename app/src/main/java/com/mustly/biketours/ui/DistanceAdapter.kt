@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mustly.biketours.R
 import com.mustly.biketours.databinding.DistanceItemBinding
+import com.mustly.biketours.util.setNoDoubleClickListener
 import com.mustly.biketours.util.stringRes
 
-class DistanceAdapter : ListAdapter<DistanceViewData, DistanceHolder>(
+class DistanceAdapter(
+    var onItemChecked: ((Int, DistanceViewData) -> Unit)? = null
+) : ListAdapter<DistanceViewData, DistanceHolder>(
     object : DiffUtil.ItemCallback<DistanceViewData>() {
         override fun areItemsTheSame(oldItem: DistanceViewData, newItem: DistanceViewData): Boolean {
             return oldItem.distance == newItem.distance
@@ -23,7 +26,7 @@ class DistanceAdapter : ListAdapter<DistanceViewData, DistanceHolder>(
 ){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DistanceHolder {
-        return DistanceHolder(DistanceItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return DistanceHolder(DistanceItemBinding.inflate(LayoutInflater.from(parent.context)), onItemChecked)
     }
 
     override fun onBindViewHolder(holder: DistanceHolder, position: Int) {
@@ -32,7 +35,10 @@ class DistanceAdapter : ListAdapter<DistanceViewData, DistanceHolder>(
     }
 }
 
-class DistanceHolder(val binding: DistanceItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class DistanceHolder(
+    val binding: DistanceItemBinding,
+    var onItemChecked: ((Int, DistanceViewData) -> Unit)? = null
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(position: Int, data: DistanceViewData) {
         binding.apply {
             tvDistance.isVisible = true
@@ -41,6 +47,12 @@ class DistanceHolder(val binding: DistanceItemBinding) : RecyclerView.ViewHolder
             } else {
                 data.distance.toString()
             }
+        }
+        binding.root.apply {
+            setNoDoubleClickListener {
+                onItemChecked?.invoke(position, data)
+            }
+            setBackgroundResource(if (data.isChecked) R.drawable.bg_distance_checked else R.drawable.bg_distance_normal)
         }
     }
 }

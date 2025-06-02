@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/page_padding_large"
+    android:background="@color/grey_100"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:paddingVertical="@dimen/padding_middle"
+        android:gravity="start"
+        android:textSize="@dimen/text_size_v1"
+        android:textColor="@color/white"
+        android:text="@string/app_name"
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_middle"
+                android:layout_marginTop="@dimen/padding_large"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvTotalDistanceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_v2"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="@string/total_distance_title_simple"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTotalDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_v0"
+                    android:textColor="@color/red"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="@dimen/padding_middle"
+                    android:layout_marginBottom="2dp"
+                    android:text="3000"
+                    tools:text="3000"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_v2"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="@string/km"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginTop="@dimen/padding_large"
+                />
+
+            <Button
+                android:id="@+id/tvSave"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/padding_large"
+                android:background="@drawable/bg_card_button"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_v0"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/play_card"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginTop="@dimen/padding_large"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/page_padding"
+                android:layout_marginVertical="@dimen/padding_large" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider_color"
+                android:layout_marginTop="@dimen/padding_large"
+                />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

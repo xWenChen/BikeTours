@@ -8,4 +8,7 @@
     <string name="meter">米</string>
     <string name="custom">自定义</string>
     <string name="total_distance_title">骑行总里程(单位：公里)：</string>
+    <string name="total_distance_title_simple">已骑行</string>
+    <string name="km">公里</string>
+    <string name="play_card">打卡</string>
 </resources>

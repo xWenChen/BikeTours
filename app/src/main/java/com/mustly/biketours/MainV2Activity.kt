@@ -1,23 +1,24 @@
 package com.mustly.biketours
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.mustly.biketours.databinding.ActivityMainBinding
+import com.mustly.biketours.databinding.ActivityMainV2Binding
 import com.mustly.biketours.ui.DistanceAdapter
 import com.mustly.biketours.ui.DistanceItemDecoration
+import com.mustly.biketours.util.formatString
+import com.mustly.biketours.util.setNoDoubleClickListener
 
 /**
  * 界面设计参考：https://developer.android.com/design/ui/mobile/guides/styles/color?hl=zh-cn
  *  https://materialui.co/colors
  *  https://coocolors.com/
  * */
-class MainActivity : AppCompatActivity() {
+class MainV2Activity : AppCompatActivity() {
+    var binding: ActivityMainV2Binding? = null
 
-    var binding: ActivityMainBinding? = null
-
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainV2ViewModel by viewModels()
 
     var adapter: DistanceAdapter? = null
 
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityMainBinding.inflate(layoutInflater).apply {
+        ActivityMainV2Binding.inflate(layoutInflater).apply {
             binding = this
             setContentView(this.root)
             initView(this)
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.init()
         viewModel.distanceList.observe(this) {
             adapter?.submitList(it)
+        }
+        viewModel.totalDistance.observe(this) {
+            it?.let {
+                binding?.tvTotalDistance?.text = (it.toFloat() / 1000L).formatString(1)
+            }
         }
     }
 
@@ -42,16 +48,21 @@ class MainActivity : AppCompatActivity() {
         adapter = null
     }
 
-    private fun initView(mBinding: ActivityMainBinding) {
+    private fun initView(mBinding: ActivityMainV2Binding) {
         initRV(mBinding)
-        mBinding.btnSave
+        mBinding.tvSave.setNoDoubleClickListener {
+            viewModel.addBikeRecord()
+        }
     }
 
-    private fun initRV(mBinding: ActivityMainBinding) {
+    private fun initRV(mBinding: ActivityMainV2Binding) {
         val rv = mBinding.recyclerView
         rv.addItemDecoration(DistanceItemDecoration(spanCount))
         rv.layoutManager = GridLayoutManager(this, spanCount)
         DistanceAdapter().apply {
+            onItemChecked = { position, data ->
+                viewModel.changeCheckedItem(position, data)
+            }
             rv.adapter = this
             adapter = this
         }

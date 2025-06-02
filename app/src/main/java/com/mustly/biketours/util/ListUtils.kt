@@ -2,13 +2,13 @@ package com.mustly.biketours.util
 
 import java.util.*
 
-fun String?.toIntSortedList(): SortedSet<Int> {
+fun String?.toLongSortedList(): SortedSet<Long> {
     if (this.isNullOrBlank()) {
         return sortedSetOf()
     }
-    val set = sortedSetOf<Int>()
+    val set = sortedSetOf<Long>()
     this.split(", ").forEach {
-        set.add(it.optInt())
+        set.add(it.optLong())
     }
     return set
 }
