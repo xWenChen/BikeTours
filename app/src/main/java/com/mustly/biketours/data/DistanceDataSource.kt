@@ -52,7 +52,7 @@ class DistanceDataSource {
     }
 
     companion object {
-        val defaultSet = sortedSetOf(4800L, 9600L)
+        val defaultSet = sortedSetOf(100L, 500L, 1000L, 4600L, 4800L, 5000L, 9600L, 10_000L)
         const val KEY_DISTANCE_LIST = "distanceList"
         const val KEY_TOTAL_DISTANCE = "totalDistance"
         const val KEY_LAST_DISTANCE = "lastDistance"

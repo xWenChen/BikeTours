@@ -45,7 +45,7 @@ class DistanceHolder(
             tvDistance.text = if (data.viewTYpe == ViewType.ADD_ICON) {
                 R.string.custom.stringRes
             } else {
-                data.distance.toString()
+                "${data.distance} 米"
             }
         }
         binding.root.apply {
