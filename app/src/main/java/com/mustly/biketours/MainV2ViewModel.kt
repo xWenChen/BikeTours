@@ -76,14 +76,23 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
         if (oldList.isNullOrEmpty()) {
             return
         }
-        oldList.forEach {
-            // Differ 比对需要完全不同的对象。
-            it.copy().let { newData ->
-                newData.isChecked = newData.distance == data.distance
-                newList.add(newData)
+        viewModelScope.launch(Dispatchers.IO) {
+            oldList.forEach { oldData ->
+                // Differ 比对需要完全不同的对象。
+                oldData.copy().let { newData ->
+                    newData.isChecked = if (newData.distance == data.distance) {
+                        // 变更后，保存数据
+                        lastDistance = newData.distance
+                        distanceRepo.saveLastDistance(newData.distance)
+                        true
+                    } else {
+                        false
+                    }
+                    newList.add(newData)
+                }
             }
+            distanceList.postValue(newList)
         }
-        distanceList.value = newList
     }
 
     companion object {

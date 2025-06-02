@@ -50,6 +50,10 @@ class DistanceHolder(
         }
         binding.root.apply {
             setNoDoubleClickListener {
+                if (data.isChecked) {
+                    // 已选中，不响应。
+                    return@setNoDoubleClickListener
+                }
                 onItemChecked?.invoke(position, data)
             }
             setBackgroundResource(if (data.isChecked) R.drawable.bg_distance_checked else R.drawable.bg_distance_normal)
