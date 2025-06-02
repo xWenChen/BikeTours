@@ -43,10 +43,7 @@ class DistanceDataSource {
     }
 
     companion object {
-        val defaultSet = sortedSetOf(
-            1000, 2000, 3000, 4000, 4800, 5000, 6000,
-            7000, 8000, 9000, 9600, 10000, 11000,
-        )
+        val defaultSet = sortedSetOf(4800, 9600)
         const val KEY_DISTANCE_LIST = "distanceList"
         const val KEY_TOTAL_DISTANCE = "totalDistance"
     }

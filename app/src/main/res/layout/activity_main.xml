@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/page_padding_large"
-    android:background="@color/main_green"
+    android:background="@color/grey_100"
     android:orientation="vertical">
 
     <TextView
