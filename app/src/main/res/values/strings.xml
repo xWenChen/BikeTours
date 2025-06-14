@@ -11,4 +11,5 @@
     <string name="total_distance_title_simple">已骑行</string>
     <string name="km">公里</string>
     <string name="play_card">打卡</string>
+    <string name="today_title">今日记录：</string>
 </resources>

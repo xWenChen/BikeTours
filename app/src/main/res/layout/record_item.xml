@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/padding_small"
+    android:background="@drawable/bg_button">
+
+    <LinearLayout
+        android:id="@+id/llTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivBike"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/tvStartTime"
+            style="@style/RecordItemTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            tools:text="16:18:52"
+            />
+
+        <ImageView
+            android:id="@+id/ivClock"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginHorizontal="@dimen/padding_middle"
+            android:src="@drawable/ic_clock"
+            app:tint="@color/white"
+            tools:text="16:18:52"
+            />
+
+        <TextView
+            android:id="@+id/tvEndTime"
+            style="@style/RecordItemTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            tools:text="16:18:52"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivBike"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="@dimen/padding_middle"
+        android:src="@drawable/ic_app_icon_transparent"
+        app:tint="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/tvDistance"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="16:18:52"
+        />
+
+    <TextView
+        android:id="@+id/tvDistance"
+        style="@style/RecordItemTextStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="100.8公里"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

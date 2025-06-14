@@ -20,6 +20,6 @@ abstract class BikeDatabase : RoomDatabase() {
             MainApplication.context,
             BikeDatabase::class.java,
             databaseName
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

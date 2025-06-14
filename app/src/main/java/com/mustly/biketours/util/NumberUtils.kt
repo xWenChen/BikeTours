@@ -23,4 +23,4 @@ fun String?.optLong(): Long {
 }
 
 // 浮点数转成指定小数位数的字符串。
-fun Float.formatString(digits: Int) = "%.${digits}f".format(this)
+fun Float.formatString(digits: Int = 1) = "%.${digits}f".format(this)
