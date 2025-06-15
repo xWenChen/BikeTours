@@ -105,12 +105,26 @@
                 android:layout_marginTop="@dimen/padding_large"
                 />
 
+            <TextView
+                android:id="@+id/tvDistanceTitle"
+                style="@style/RecordItemTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/bg_blue"
+                android:layout_marginHorizontal="@dimen/page_padding"
+                android:layout_marginTop="@dimen/padding_large"
+                android:paddingHorizontal="@dimen/padding_middle"
+                android:paddingVertical="@dimen/padding_middle"
+                android:text="@string/bike_distance"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/page_padding"
-                android:layout_marginVertical="@dimen/padding_large" />
+                android:layout_marginHorizontal="@dimen/page_padding"
+                android:layout_marginBottom="@dimen/padding_large" />
 
             <View
                 android:layout_width="match_parent"
