@@ -3,6 +3,7 @@ package com.mustly.biketours
 import android.app.Application
 import android.content.Context
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,8 @@ import com.mustly.biketours.ui.BikeViewData.Companion.toBikeViewData
 import com.mustly.biketours.ui.DistanceViewData
 import com.mustly.biketours.ui.ViewType
 import com.mustly.biketours.util.generateContentId
+import com.mustly.biketours.util.optLong
+import com.mustly.biketours.view.input.InputDialogFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -54,7 +57,7 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
             )
         }
         // 添加加号
-        list.add(DistanceViewData(ViewType.ADD_ICON))
+        list.add(DistanceViewData(ViewType.CUSTOM))
 
         distanceList.postValue(list)
     }
@@ -85,16 +88,16 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
     /**
      * 增加一次骑行记录
      * */
-    fun addBikeRecord(context: Context) {
+    fun addBikeRecord(context: Context, distance: Long = lastDistance) {
         val nowValue = totalDistance.value ?: return
         viewModelScope.launch(Dispatchers.IO) {
             val time = System.currentTimeMillis()
-            val data = saveToDb(time)
+            val data = saveToDb(time, distance)
             if (data == null) {
                 Toast.makeText(context, "骑行记录添加失败", Toast.LENGTH_LONG)
                 return@launch
             }
-            val newValue = nowValue + lastDistance
+            val newValue = nowValue + distance
             if (!distanceRepo.saveTotalDistance(newValue)){
                 return@launch
             }
@@ -107,13 +110,13 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    private suspend fun saveToDb(time: Long): BikeViewData? {
+    private suspend fun saveToDb(time: Long, distance: Long): BikeViewData? {
         // 先以结束时间作为打卡时间。
         val dbData = bikeRepository.insertOrUpdateBikeData(
             BikeData(
                 contentId = generateContentId(),
                 endTime = time,
-                distance = lastDistance,
+                distance = distance,
             )
         )
         return dbData.toBikeViewData()
@@ -142,6 +145,17 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
             }
             distanceList.postValue(newList)
         }
+    }
+
+    fun showInputDialog(activity: FragmentActivity) {
+        InputDialogFragment().apply {
+            this.onConfirm = {
+                val num = it.optLong()
+                if (num > 0L) {
+                    addBikeRecord(activity, num)
+                }
+            }
+        }.show(activity.supportFragmentManager, "InputDialogFragment")
     }
 
     private fun copyBikeRecords(): MutableList<BikeViewData> {

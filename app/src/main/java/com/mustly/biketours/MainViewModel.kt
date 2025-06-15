@@ -27,7 +27,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 list.add(DistanceViewData(ViewType.NUMBER, it.toLong()))
             }
             // 添加加号
-            list.add(DistanceViewData(ViewType.ADD_ICON))
+            list.add(DistanceViewData(ViewType.CUSTOM))
 
             distanceList.postValue(list)
 

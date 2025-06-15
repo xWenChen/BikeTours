@@ -6,7 +6,7 @@ enum class ViewType {
      * */
     NUMBER,
     /**
-     * 加号
+     * 自定义选项
      * */
-    ADD_ICON,
+    CUSTOM,
 }

@@ -42,7 +42,7 @@ class DistanceHolder(
     fun bind(position: Int, data: DistanceViewData) {
         binding.apply {
             tvDistance.isVisible = true
-            tvDistance.text = if (data.viewTYpe == ViewType.ADD_ICON) {
+            tvDistance.text = if (data.viewTYpe == ViewType.CUSTOM) {
                 R.string.custom.stringRes
             } else {
                 "${data.distance} 米"

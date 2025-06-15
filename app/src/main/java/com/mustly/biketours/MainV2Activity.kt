@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mustly.biketours.databinding.ActivityMainV2Binding
-import com.mustly.biketours.ui.BikeRecordAdapter
-import com.mustly.biketours.ui.DistanceAdapter
-import com.mustly.biketours.ui.DistanceItemDecoration
-import com.mustly.biketours.ui.RecordItemDecoration
+import com.mustly.biketours.ui.*
 import com.mustly.biketours.util.TimeUtils
 import com.mustly.biketours.util.formatString
 import com.mustly.biketours.util.setNoDoubleClickListener
@@ -66,6 +63,10 @@ class MainV2Activity : AppCompatActivity() {
             viewModel.addBikeRecord(this)
         }
         // 先以end时间作为骑行时间
+        initTodayRecordTitle(mBinding)
+    }
+
+    private fun initTodayRecordTitle(mBinding: ActivityMainV2Binding) {
         val dayStr = TimeUtils.parseDateText(System.currentTimeMillis())
         mBinding.tvDate.text = "$dayStr ${R.string.today_title.stringRes}"
     }
@@ -76,7 +77,11 @@ class MainV2Activity : AppCompatActivity() {
         rv.layoutManager = GridLayoutManager(this, spanCount)
         DistanceAdapter().apply {
             onItemChecked = { position, data ->
-                viewModel.changeCheckedItem(position, data)
+                if (data.viewTYpe == ViewType.CUSTOM) {
+                    viewModel.showInputDialog(this@MainV2Activity)
+                } else {
+                    viewModel.changeCheckedItem(position, data)
+                }
             }
             rv.adapter = this
             adapter = this

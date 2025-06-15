@@ -1,5 +1,7 @@
 package com.mustly.biketours.util
 
+import android.text.Editable
+
 fun String?.optInt(): Int {
     if (this.isNullOrEmpty()) {
         return 0
@@ -17,6 +19,17 @@ fun String?.optLong(): Long {
     }
     return try {
         this.toLong()
+    } catch (e: Exception) {
+        0L
+    }
+}
+
+fun Editable?.optLong(): Long {
+    if (this.isNullOrEmpty()) {
+        return 0L
+    }
+    return try {
+        this.toString().toLong()
     } catch (e: Exception) {
         0L
     }
