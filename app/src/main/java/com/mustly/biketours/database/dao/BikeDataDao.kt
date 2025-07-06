@@ -10,7 +10,14 @@ import com.mustly.biketours.database.constants.tableName
 @Dao
 interface BikeDataDao {
     @Query("SELECT * FROM $tableName")
-    fun getAll(): List<BikeData>?
+    fun queryAll(): List<BikeData>?
+
+    /**
+     * ORDER BY createTime ASC // 按时间升序排序（从旧到新）
+     * ORDER BY createTime DESC // 按时间降序排序（从新到旧）
+     * */
+    @Query("SELECT * FROM $tableName ORDER BY endTime DESC")
+    fun queryAllOrderByEndTime(): List<BikeData>?
 
     @Query("SELECT * FROM $tableName WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<BikeData>?
@@ -20,6 +27,18 @@ interface BikeDataDao {
      * */
     @Query("SELECT * FROM $tableName WHERE startTime = :startTime AND endTime = :endTime AND distance = :distance LIMIT 1")
     fun query(startTime: Long, endTime: Long, distance: Long): BikeData?
+
+    /**
+     * 分页加载
+     *
+     * ORDER BY createTime ASC // 按时间升序排序（从旧到新）
+     * ORDER BY createTime DESC // 按时间降序排序（从新到旧）
+     *
+     * LIMIT 1 限制查询单条
+     * OFFSET 偏移值
+     * */
+    @Query("SELECT * FROM $tableName ORDER BY endTime DESC LIMIT :size OFFSET :offset")
+    fun queryByPage(size: Long, offset: Long): List<BikeData>?
 
     /**
      * 查询指定结束时间内的数据

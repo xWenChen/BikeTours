@@ -16,6 +16,17 @@ class BikeRepository {
         return dataSource.insertOrUpdateBikeData(data)
     }
 
+    suspend fun getAllOrderByEndTime(): List<BikeData?>? {
+        return dataSource.queryAllOrderByEndTime()
+    }
+
+    /**
+     * 分页加载数据
+     * */
+    suspend fun getDataByPage(page: Long, pageSize: Long): List<BikeData?>? {
+        return dataSource.getDataByPage(page, pageSize)
+    }
+
     /**
      * 获取今天的骑行记录
      * */

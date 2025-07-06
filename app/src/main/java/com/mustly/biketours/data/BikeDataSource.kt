@@ -38,6 +38,28 @@ class BikeDataSource {
         }
     }
 
+    suspend fun queryAllOrderByEndTime(): List<BikeData?>? {
+        return try {
+            dao.queryAllOrderByEndTime()
+        } catch (e: Exception) {
+            Log.e(TAG, "getAllRecord", e)
+            null
+        }
+    }
+
+    /**
+     * 分页加载数据
+     * */
+    suspend fun getDataByPage(page: Long, pageSize: Long): List<BikeData?>? {
+        return try {
+            val offset = page * pageSize
+            dao.queryByPage(pageSize, offset)
+        } catch (e: Exception) {
+            Log.e(TAG, "getDataByPage", e)
+            null
+        }
+    }
+
     /**
      * 获取指定时间范围的骑行记录
      * */

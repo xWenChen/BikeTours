@@ -1,5 +1,6 @@
 package com.mustly.biketours
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mustly.biketours.databinding.ActivityMainV2Binding
+import com.mustly.biketours.record.RecordActivity
 import com.mustly.biketours.ui.*
 import com.mustly.biketours.util.TimeUtils
 import com.mustly.biketours.util.formatString
@@ -64,6 +66,10 @@ class MainV2Activity : AppCompatActivity() {
         }
         // 先以end时间作为骑行时间
         initTodayRecordTitle(mBinding)
+        mBinding.ivAllRecord.setNoDoubleClickListener {
+            // 跳转页面
+            this.startActivity(Intent(this, RecordActivity::class.java))
+        }
     }
 
     private fun initTodayRecordTitle(mBinding: ActivityMainV2Binding) {

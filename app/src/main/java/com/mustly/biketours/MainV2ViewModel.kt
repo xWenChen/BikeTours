@@ -172,7 +172,7 @@ class MainV2ViewModel(application: Application) : AndroidViewModel(application) 
 
     companion object {
         // 初始的距离，单位：米
-        const val INIT_DISTANCE = 350_800L
+        const val INIT_DISTANCE = 526_800L
         // 上次骑行的距离，单位：米
         const val LAST_DISTANCE = 4800L
     }
